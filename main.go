@@ -48,11 +48,31 @@ func renderTemplate(w http.ResponseWriter, name string, data interface{}) {
 }
 
 func Home(w http.ResponseWriter, r *http.Request) {
-	log.Println(r.Method, r.URL.Path)
-
-	w.Header().Set("content-Type", "test/plain; charset=utf-8")
-
-	w.WriteHeader(http.StatusOK)
+	log.Printf("Request : %s %s", r.Method, r.URL.Path)
 
 	renderTemplate(w, "index", nil)
+}
+
+type Projects struct {
+	ID          int
+	Title       string
+	CoverImage  string
+	TechStack   []string
+	ShortIntro  string
+	Description string
+	Features    []string
+	RepoLink    string
+	DemoVideo   string
+}
+
+var allProjects = []Projects{
+	{1,
+	}
+
+}
+
+func ListProjects(w http.ResponseWriter, r *http.Request) {
+	log.Printf("Request : %s %s", r.Method, r.URL.Path)
+
+	renderTemplate(w, "liste-projets", allProjects)
 }
