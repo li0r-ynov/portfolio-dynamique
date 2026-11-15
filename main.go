@@ -8,10 +8,10 @@ import (
 func main () {
 	router := http.NewServeMux()
 
-	router.HandleFunc("/{$}",Home)
-	router.HandleFunc("/projects",ListProjects)
-	router.HandleFunc("/projects/{id}",ShowProjectsById)
-	router.HandleFunc("/",NotFound)
+	router.HandleFunc("GET /{$}", Home)
+	router.HandleFunc("GET /projects", ListProjects)
+	router.HandleFunc("GET /projects/{id}", ShowProjectsById)
+	router.HandleFunc("GET /", NotFound)
 
 	fileServer := http.FileServer(http.Dir("./assets"))
 	router.Handle("/static/", http.StripPrefix("/static/", fileServer))
